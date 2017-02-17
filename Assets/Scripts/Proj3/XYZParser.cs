@@ -5,19 +5,12 @@ using System;
 
 public class XYZParser : MonoBehaviour {
 
-    public GameObject[] prefabs;
-
-    private List<Vector3> positions = new List<Vector3>();
-
-    private void Start()
-    {
-        Parse("Sample-track.txt");
-    }
-
-    public void Parse(string filename)
+    public List<Vector3> Parse(string filename)
     {
         //Begin loading process
         print("Parsing Data");
+    
+        List<Vector3> positions = new List<Vector3>();
 
         //Set up path
         string path = Application.dataPath + "/Resources/Files/" + filename;
@@ -27,7 +20,7 @@ public class XYZParser : MonoBehaviour {
 
         //Open file
         System.IO.StreamReader file = new System.IO.StreamReader(path);
-        int i = 0;
+
         //Read file
         while((line = file.ReadLine()) != null)
         {
@@ -43,10 +36,10 @@ public class XYZParser : MonoBehaviour {
 
                 //Store vector into our vector3 list
                 positions.Add(new Vector3(xpos, ypos, zpos));
-                print(positions[i].x + " " + positions[i].y + " " + positions[i].z + " ");
-                i++;
             }
         }
         file.Close();
+
+        return positions;
     }
 }
