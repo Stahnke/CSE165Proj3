@@ -8,6 +8,7 @@ public class CheckPointBehavior : MonoBehaviour {
     private int index = 0;
     private List<GameObject> checkPoints;
     private GameObject compass;
+    private GameObject compass_mini;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,6 +28,7 @@ public class CheckPointBehavior : MonoBehaviour {
                 //open the next checkpoint
                 checkPoints[index + 1].GetComponent<CheckPointBehavior>().SetOpen(true);
                 compass.GetComponent<Compass>().SetTarget(checkPoints[index + 1]);
+                compass_mini.GetComponent<Compass>().SetTarget(checkPoints[index + 1]);
             }
 
             else
@@ -55,5 +57,10 @@ public class CheckPointBehavior : MonoBehaviour {
     public void SetCompass(GameObject compass)
     {
         this.compass = compass;
+    }
+
+    public void SetCompassMini(GameObject compass_mini)
+    {
+        this.compass_mini = compass_mini;
     }
 }

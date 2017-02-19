@@ -11,6 +11,7 @@ public class CheckPointSpawner : MonoBehaviour {
     public List<GameObject> checkPoints = new List<GameObject>();
 
     public GameObject compass;
+    public GameObject compass_mini;
 
     //INIT
 	void Start () {
@@ -45,6 +46,7 @@ public class CheckPointSpawner : MonoBehaviour {
             //Set our second checkpoint to "on" (or open)
             checkPoints[1].GetComponent<CheckPointBehavior>().SetOpen(true);
             compass.GetComponent<Compass>().SetTarget(checkPoints[1]);
+            compass_mini.GetComponent<Compass>().SetTarget(checkPoints[1]);
         }
 
         //Else throw an exception
@@ -57,6 +59,7 @@ public class CheckPointSpawner : MonoBehaviour {
         {
             checkPoints[i].GetComponent<CheckPointBehavior>().SetCheckPointList(checkPoints);
             checkPoints[i].GetComponent<CheckPointBehavior>().SetCompass(compass);
+            checkPoints[i].GetComponent<CheckPointBehavior>().SetCompassMini(compass_mini);
         }
     }
 }
