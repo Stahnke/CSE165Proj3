@@ -5,6 +5,8 @@ using System;
 
 public class XYZParser : MonoBehaviour {
 
+    public float scaleFactor = 1.0f;
+
     public List<Vector3> Parse(string filename)
     {
         //Begin loading process
@@ -30,9 +32,9 @@ public class XYZParser : MonoBehaviour {
                 List<float> numbers = new List<float>(Array.ConvertAll(line.Split(' '), float.Parse));
 
                 //Set x y z
-                xpos = numbers[0];
-                ypos = numbers[1];
-                zpos = numbers[2];
+                xpos = numbers[0] * scaleFactor;
+                ypos = numbers[1] * scaleFactor;
+                zpos = numbers[2] * scaleFactor;
 
                 //Store vector into our vector3 list
                 positions.Add(new Vector3(xpos, ypos, zpos));
