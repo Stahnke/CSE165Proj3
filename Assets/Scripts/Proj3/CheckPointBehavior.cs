@@ -35,6 +35,7 @@ public class CheckPointBehavior : MonoBehaviour {
             {
                 //TODO FINISHED GAME
                 print("Game complete!");
+                GameObject.Find("Timer").GetComponent<Timer>().EndGame();
             }
         }
     }

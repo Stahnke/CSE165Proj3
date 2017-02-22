@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour {
 
     private bool moving;
 
+    private bool movement_unlock = false;
+
     public void StartMoving()
     {
 
@@ -21,7 +23,7 @@ public class Movement : MonoBehaviour {
 
     public void Update()
     {
-        if (moving)
+        if (moving && movement_unlock)
         {
             float speed = 5.0f;
 
@@ -32,5 +34,10 @@ public class Movement : MonoBehaviour {
             Vector3 movement = new Vector3(x, y, z);
             transform.Translate(movement);
         }
+    }
+
+    public void LockUnlockMovement(bool movement_unlock)
+    {
+       this.movement_unlock = movement_unlock;
     }
 }
