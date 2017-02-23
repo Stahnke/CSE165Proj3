@@ -6,7 +6,10 @@ using Leap;
 
 public class FindHand : MonoBehaviour {
 
-    LeapProvider provider;
+    public LeapProvider provider;
+
+    public Hand hand;
+
     void Start()
     {
         provider = FindObjectOfType<LeapProvider>() as LeapProvider;
@@ -18,6 +21,7 @@ public class FindHand : MonoBehaviour {
         {
             if (hand.IsLeft)
             {
+                //this.hand = hand;
                 transform.position = hand.PalmPosition.ToVector3()
                +
                 hand.PalmNormal.ToVector3() *
@@ -26,4 +30,4 @@ public class FindHand : MonoBehaviour {
             }
         }
     }
-}
+}
