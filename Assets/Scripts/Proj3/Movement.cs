@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour {
 
     private bool movement_unlock = false;
 
+    public float speed;
+
     public void StartMoving()
     {
 
@@ -25,7 +27,6 @@ public class Movement : MonoBehaviour {
     {
         if (moving && movement_unlock)
         {
-            float speed = 5.0f;
 
             float x = 0.0f;
             float y = 0.0f;

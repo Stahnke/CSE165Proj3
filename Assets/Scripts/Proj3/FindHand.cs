@@ -10,6 +10,20 @@ public class FindHand : MonoBehaviour {
 
     public Hand hand;
 
+    public float speed;
+
+    private bool rotateOn = false;
+
+    public void TurnOn()
+    {
+        rotateOn = true;
+    }
+
+    public void TurnOff()
+    {
+        rotateOn = false;
+    }
+
     void Start()
     {
         provider = FindObjectOfType<LeapProvider>() as LeapProvider;
@@ -19,14 +33,19 @@ public class FindHand : MonoBehaviour {
         Frame frame = provider.CurrentFrame;
         foreach (Hand hand in frame.Hands)
         {
-            if (hand.IsLeft)
+            if (hand.IsLeft && rotateOn == true)
             {
-                //this.hand = hand;
-                transform.position = hand.PalmPosition.ToVector3()
-               +
-                hand.PalmNormal.ToVector3() *
-                (transform.localScale.y * .5f + .02f);
-                //transform.rotation = hand.Basis.Rotation();
+                this.hand = hand;
+                float x = hand.Direction.x;
+                float y = hand.Direction.y;
+                float z = hand.Direction.z;
+
+                Vector3 targetDir = new Vector3(x, y, z);
+                float step = speed * Time.deltaTime;
+
+                Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
+                Debug.DrawRay(transform.position, newDir, Color.red);
+                transform.rotation = Quaternion.LookRotation(newDir);
             }
         }
     }

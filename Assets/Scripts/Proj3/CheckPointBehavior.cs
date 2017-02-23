@@ -10,11 +10,17 @@ public class CheckPointBehavior : MonoBehaviour {
     private GameObject compass;
     private GameObject compass_mini;
 
+    private AudioSource audio;
+
     private void OnTriggerEnter(Collider other)
     {
         //Player collided with the checkpoint and it is open
         if (open == true && other.CompareTag("Player"))
         {
+
+            audio = GetComponent<AudioSource>();
+            audio.Play();
+
             print("Checkpoint gained: " + index);
 
             //TODO some animation
