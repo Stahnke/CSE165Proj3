@@ -15,13 +15,33 @@ public class Timer : MonoBehaviour {
 
     public GameObject player;
 
+    public GameObject curCheckPoint;
+
 	// Use this for initialization
 	void Start () {
-        StartCoroutine("StartCountDown", countDownStartTime);
 	}
-	
-    IEnumerator StartCountDown(int startTime)
+
+    public void SetCurCheckPoint(GameObject curCheckPoint)
     {
+        this.curCheckPoint = curCheckPoint;
+    }
+
+    public void CountDownBegin(int startTime, bool first_time)
+    {
+        object[] parms = new object[2] { startTime, first_time };
+        StartCoroutine("StartCountDown", parms);
+    }
+	
+    IEnumerator StartCountDown(object[] parms)
+    {
+
+        player.GetComponent<Movement>().LockUnlockMovement(false);
+
+        int startTime = (int)parms[0];
+        bool first_time = (bool)parms[1];
+
+        player.transform.position = (curCheckPoint.transform.position);
+
         int countDownTime = startTime;
 
         while(countDownTime > 0)
@@ -35,7 +55,10 @@ public class Timer : MonoBehaviour {
 
         player.GetComponent<Movement>().LockUnlockMovement(true);
 
-        StartCoroutine("StartTimer", 0.0f);
+        if(first_time)
+        {
+            StartCoroutine("StartTimer", 0.0f);
+        }
         yield return new WaitForSeconds(1.0f);
         countDownText.text = "";
     }

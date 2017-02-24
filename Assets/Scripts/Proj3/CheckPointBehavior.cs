@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPointBehavior : MonoBehaviour {
 
-    private bool open = false;
+    public bool open = false;
     private int index = 0;
     private List<GameObject> checkPoints;
     private GameObject compass;
@@ -49,6 +49,8 @@ public class CheckPointBehavior : MonoBehaviour {
     public void SetOpen(bool open)
     {
         this.open = open;
+        if(open == false)
+            GameObject.Find("Timer").GetComponent<Timer>().SetCurCheckPoint(gameObject);
     }
 
     public void SetIndex(int index)

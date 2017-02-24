@@ -13,6 +13,7 @@ TagManager:
   - saveloadButton
   - labObject
   - wallPlane
+  - campusBuilding
   layers:
   - Default
   - TransparentFX

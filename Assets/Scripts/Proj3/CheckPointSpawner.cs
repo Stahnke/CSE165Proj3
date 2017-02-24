@@ -13,6 +13,8 @@ public class CheckPointSpawner : MonoBehaviour {
     public GameObject compass;
     public GameObject compass_mini;
 
+    public GameObject timer;
+
     //INIT
 	void Start () {
 
@@ -33,6 +35,9 @@ public class CheckPointSpawner : MonoBehaviour {
             checkPoint.GetComponent<CheckPointBehavior>().SetIndex(i);
             checkPoint.GetComponent<CheckPointBehavior>().SetOpen(false);
         }
+
+        checkPoints[0].GetComponent<CheckPointBehavior>().SetOpen(false);
+        timer.GetComponent<Timer>().CountDownBegin(3, true);
 
         //Set up the checkpoint parameters for the game's initial settings
         SetUpCheckPointParameters();
